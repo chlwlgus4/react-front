@@ -46,7 +46,7 @@ const Header = () => {
                     <Link to="/" className="logo">
                         HOME
                     </Link>
-                    <Button cyan to={"/write"}>새 글 작성하기</Button>
+                    <Button cyan to={"/write"}>작성하기</Button>
                 </Wrapper>
             </HeaderBlock>
             <Spacer/>
