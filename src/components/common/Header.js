@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import Responsive from './Responsive';
@@ -54,24 +54,34 @@ const Line = styled.div`
     border-radius: 2px;
     box-shadow: 0 1px 3px rgb(0 0 0 / 50%);
     position:relative;
-    
 `
 
 const Header = () => {
 
-    const [toggle, setToggle] = useState(false);
+    const [toggle, setToggle] = useState({
+        line: false,
+        init: true
+    });
+
+    const lineTop = useRef();
+    const lineMid = useRef();
+    const lineBot = useRef();
 
     const onToggle = () => {
-        setToggle(!toggle);
+        setToggle({
+            line: !toggle.line,
+            init: false
+        });
     }
+
     return (
         <>
             <HeaderBlock>
                 <Wrapper>
                     <LineWrapper id="line-wrapper" onClick={() => onToggle()}>
-                        <Line className={toggle ? 'line-top' : 'top-reverse'}></Line>
-                        <Line className={toggle ? 'line-mid' : 'mid-reverse'}></Line>
-                        <Line className={toggle ? 'line-bot' : 'bot-reverse'}></Line>
+                        <Line className={(toggle.init ? 'init ' : '') + (toggle.line ? 'line-top' : 'top-reverse')} ref={lineTop}></Line>
+                        <Line className={(toggle.init ? 'init ' : '') + (toggle.line ? 'line-mid' : 'mid-reverse')} ref={lineMid}></Line>
+                        <Line className={(toggle.init ? 'init ' : '') + (toggle.line ? 'line-bot' : 'bot-reverse')} ref={lineBot}></Line>
                     </LineWrapper>
                     <Link to="/" className="logo">HOME</Link>
                     <Button cyan to={"/write"}>새 글 작성하기</Button>
