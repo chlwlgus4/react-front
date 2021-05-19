@@ -37,16 +37,11 @@ const Spacer = styled.div`
   height: 4rem;
 `;
 
-const HamburgerBox = styled.div`
-`
-
 /* 추가된 부분 */
 const LineWrapper = styled.div`
-    cursor:pointer;
-    width:56px;
-    height:35px;
-    top:52.5px;
-    left:47px;
+    &:hover {
+        cursor: pointer
+    }
 `
 
 /* 추가된 부분 */
@@ -59,27 +54,25 @@ const Line = styled.div`
     border-radius: 2px;
     box-shadow: 0 1px 3px rgb(0 0 0 / 50%);
     position:relative;
+    
 `
 
 const Header = () => {
 
     const [toggle, setToggle] = useState(false);
 
-    const onClick = () => {
+    const onToggle = () => {
         setToggle(!toggle);
     }
-
     return (
         <>
             <HeaderBlock>
                 <Wrapper>
-                    <HamburgerBox>
-                        <LineWrapper id="line-wrapper" onClick={onClick}>
-                            <Line className={(toggle ?' line-top': 'top-reverse')}></Line>
-                            <Line className={(toggle ?' line-mid': 'mid-reverse')}></Line>
-                            <Line className={(toggle ?' line-bot': 'bot-reverse')}></Line>
-                        </LineWrapper>
-                    </HamburgerBox>
+                    <LineWrapper id="line-wrapper" onClick={() => onToggle()}>
+                        <Line className={toggle ? 'line-top' : 'top-reverse'}></Line>
+                        <Line className={toggle ? 'line-mid' : 'mid-reverse'}></Line>
+                        <Line className={toggle ? 'line-bot' : 'bot-reverse'}></Line>
+                    </LineWrapper>
                     <Link to="/" className="logo">HOME</Link>
                     <Button cyan to={"/write"}>새 글 작성하기</Button>
                 </Wrapper>
