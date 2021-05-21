@@ -42,6 +42,9 @@ const LineWrapper = styled.div`
     &:hover {
         cursor: pointer
     }
+    @media screen and (min-width: 500px) {
+    display: none;
+    }
 `
 
 /* 추가된 부분 */
@@ -62,11 +65,6 @@ const Header = () => {
         line: false,
         init: true
     });
-
-    const lineTop = useRef();
-    const lineMid = useRef();
-    const lineBot = useRef();
-
     const onToggle = () => {
         setToggle({
             line: !toggle.line,
@@ -79,9 +77,9 @@ const Header = () => {
             <HeaderBlock>
                 <Wrapper>
                     <LineWrapper id="line-wrapper" onClick={() => onToggle()}>
-                        <Line className={(toggle.init ? 'init ' : '') + (toggle.line ? 'line-top' : 'top-reverse')} ref={lineTop}></Line>
-                        <Line className={(toggle.init ? 'init ' : '') + (toggle.line ? 'line-mid' : 'mid-reverse')} ref={lineMid}></Line>
-                        <Line className={(toggle.init ? 'init ' : '') + (toggle.line ? 'line-bot' : 'bot-reverse')} ref={lineBot}></Line>
+                        <Line className={(toggle.init ? 'init ' : '') + (toggle.line ? 'line-top' : 'top-reverse')}></Line>
+                        <Line className={(toggle.init ? 'init ' : '') + (toggle.line ? 'line-mid' : 'mid-reverse')}></Line>
+                        <Line className={(toggle.init ? 'init ' : '') + (toggle.line ? 'line-bot' : 'bot-reverse')}></Line>
                     </LineWrapper>
                     <Link to="/" className="logo">HOME</Link>
                     <Button cyan to={"/write"}>새 글 작성하기</Button>

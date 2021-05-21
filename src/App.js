@@ -5,11 +5,13 @@ import PostListPage from "./pages/PostListPage";
 import PostPage from "./pages/PostPage";
 import WritePage from "./pages/WritePage";
 import Header from "./components/common/Header";
+import Navigation from "./components/common/Navigation";
 
 function App() {
     return (
         <div>
             <Header />
+            <Navigation />
             <Switch>
                 <Route component={PostListPage} path={'/'} exact></Route>
                 <Route component={WritePage} path={'/write'} exact></Route>
