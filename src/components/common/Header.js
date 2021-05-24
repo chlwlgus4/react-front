@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import Responsive from './Responsive';
 import Button from './Button';
+import Navigation from "./Navigation";
 
 const HeaderBlock = styled.div`
   position: fixed;
@@ -57,18 +58,26 @@ const Line = styled.div`
     border-radius: 2px;
     box-shadow: 0 1px 3px rgb(0 0 0 / 50%);
     position:relative;
-`
+`;
+
+const LoginBox = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 7rem;
+`;
 
 const Header = () => {
 
     const [toggle, setToggle] = useState({
         line: false,
-        init: true
+        init: true,
+        naviOpen: false
     });
     const onToggle = () => {
         setToggle({
             line: !toggle.line,
-            init: false
+            init: false,
+            naviOpen: !toggle.naviOpen
         });
     }
 
@@ -82,10 +91,15 @@ const Header = () => {
                         <Line className={(toggle.init ? 'init ' : '') + (toggle.line ? 'line-bot' : 'bot-reverse')}></Line>
                     </LineWrapper>
                     <Link to="/" className="logo">HOME</Link>
-                    <Button cyan to={"/write"}>새 글 작성하기</Button>
+                    {/*<Button cyan to={"/write"}>새 글 작성하기</Button>*/}
+                    <LoginBox>
+                        <Link style={{fontSize: '0.9rem', fontWeight: 500}} to="/">로그인</Link>
+                        <Link style={{fontSize: '0.9rem', fontWeight: 500}} to="/">회원가입</Link>
+                    </LoginBox>
                 </Wrapper>
             </HeaderBlock>
             <Spacer/>
+            <Navigation naviOpen={toggle.naviOpen} />
         </>
     );
 };

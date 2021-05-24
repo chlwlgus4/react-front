@@ -8,6 +8,8 @@ const MenuBlock = styled.div`
   width: 100%;
   background: white;
   //box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+  @media screen and (max-width: 500px) {
+  display: ${props => props.naviOpen ? 'block' : 'none' };
 `;
 
 const Wrapper = styled(Responsive)`
@@ -26,11 +28,12 @@ const Wrapper = styled(Responsive)`
   }
 `;
 
-const Navigation = () => {
+const Navigation = ({naviOpen}) => {
+    console.log(naviOpen)
     return (
-        <MenuBlock>
+        <MenuBlock naviOpen={naviOpen}>
             <Wrapper>
-                <Link to="/" className="logo">메뉴1</Link>
+                <Link to="/post" className="logo">게시판</Link>
                 <Link to="/" className="logo">메뉴2</Link>
                 <Link to="/" className="logo">메뉴3</Link>
                 <Link to="/" className="logo">메뉴4</Link>

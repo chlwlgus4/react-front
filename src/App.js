@@ -11,9 +11,9 @@ function App() {
     return (
         <div>
             <Header />
-            <Navigation />
+
             <Switch>
-                <Route component={PostListPage} path={'/'} exact></Route>
+                <Route component={PostListPage} path={'/post'} exact></Route>
                 <Route component={WritePage} path={'/write'} exact></Route>
                 <Route component={PostPage} path={'/@:postId'} exact></Route>
             </Switch>
