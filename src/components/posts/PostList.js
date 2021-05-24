@@ -4,16 +4,11 @@ import Responsive from "../common/Responsive";
 import palette from "../../lib/styles/palette";
 import SubInfo from "../common/SubInfo";
 import {Link} from 'react-router-dom';
-import Button from "../common/Button";
 
 const PostListBlock = styled(Responsive)`
     margin-top: 3rem;
 `;
 
-const WriteBtnBlock = styled(Responsive)`
-    height: 1rem;
-    margin-top: 2rem;
-`;
 
 const PostItemBlock = styled.div`
   padding-top: 1rem;
@@ -41,7 +36,6 @@ const PostItemBlock = styled.div`
 
 const PostItem = ({post}) => {
     const {createdDate, title, id} = post;
-
     return (
         <PostItemBlock>
             <h2>
@@ -64,9 +58,6 @@ const PostList = ({posts, loading, error}) => {
     }
     return (
         <>
-            <WriteBtnBlock>
-                <Button style={{float: 'right'}} cyan to={"/write"}>새 글 작성하기</Button>
-            </WriteBtnBlock>
             <PostListBlock>
                 {/*로딩 중이 아니고, 포스트 배열이 존재할 때만 보여 줌*/}
                 {!loading && posts && (
