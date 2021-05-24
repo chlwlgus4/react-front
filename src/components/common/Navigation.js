@@ -7,14 +7,14 @@ const MenuBlock = styled.div`
   // position: fixed;
   width: 100%;
   background: white;
-  //box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+  // box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
   @media screen and (max-width: 500px) {
       position: absolute;
       transition:transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
       left: -360px;
       height: 100%;
       width: 60%;
-      
+      z-index: 99;
       top: 0;
   }
 `;

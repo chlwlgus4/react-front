@@ -76,6 +76,13 @@ const LoginBox = styled.div`
     width: 7rem;
 `;
 
+const BackBoard = styled.div`
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+`;
+
 const Header = () => {
 
     const [toggle, setToggle] = useState({
@@ -106,7 +113,6 @@ const Header = () => {
                         <Line />
                     </LineWrapper>
                     <Link to="/" className="logo">HOME</Link>
-                    {/*<Button cyan to={"/write"}>새 글 작성하기</Button>*/}
                     <LoginBox>
                         <Link style={{fontSize: '0.9rem', fontWeight: 500}} to="/">로그인</Link>
                         <Link style={{fontSize: '0.9rem', fontWeight: 500}} to="/">회원가입</Link>
@@ -116,7 +122,7 @@ const Header = () => {
             <Spacer/>
 
             <Navigation naviOpen={toggle.naviOpen} />
-            <div style={{background: 'rgba(0, 0, 0, 0.5)', display: (toggle.naviOpen? 'block' : 'none')}}
+            <BackBoard style={{background: 'rgba(0, 0, 0, 0.5)', display: (toggle.naviOpen? 'block' : 'none')}}
                  onClick={() => onToggle()}
             />
         </>
