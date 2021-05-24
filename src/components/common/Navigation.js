@@ -9,7 +9,14 @@ const MenuBlock = styled.div`
   background: white;
   //box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
   @media screen and (max-width: 500px) {
-  display: ${props => props.naviOpen ? 'block' : 'none' };
+      position: absolute;
+      transition:transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+      left: -360px;
+      height: 100%;
+      width: 60%;
+      
+      top: 0;
+  }
 `;
 
 const Wrapper = styled(Responsive)`
@@ -26,12 +33,18 @@ const Wrapper = styled(Responsive)`
     display: flex;
     align-items: center;
   }
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background: #87cc8cad;
+    margin: 0;
+  }
 `;
 
 const Navigation = ({naviOpen}) => {
-    console.log(naviOpen)
     return (
-        <MenuBlock naviOpen={naviOpen}>
+        <MenuBlock naviOpen={naviOpen} className={naviOpen?'slide': ''}>
             <Wrapper>
                 <Link to="/post" className="logo">게시판</Link>
                 <Link to="/" className="logo">메뉴2</Link>

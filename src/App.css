@@ -132,5 +132,8 @@ body {
   100% {transform:translateY(-13px) rotateZ(0deg)}
 }
 
+.slide {
+  transform:translate(360px,0);
+}
 
 

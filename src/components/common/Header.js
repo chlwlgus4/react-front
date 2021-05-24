@@ -1,8 +1,7 @@
-import React, {useState, useRef} from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import Responsive from './Responsive';
-import Button from './Button';
 import Navigation from "./Navigation";
 
 const HeaderBlock = styled.div`
@@ -44,11 +43,22 @@ const LineWrapper = styled.div`
         cursor: pointer
     }
     @media screen and (min-width: 500px) {
-    display: none;
+        display: none;
     }
+
 `
 
-/* 추가된 부분 */
+const LineBox = styled.div`
+     @media screen and (max-width: 500px) {
+        position: fixed;
+        z-index: 999999999;
+        height: 4rem;
+        align-items: center;
+        display: flex;
+        padding-left: 10px;
+    }
+`;
+
 const Line = styled.div`
     background: #282c34;
     margin-top: 6px;
@@ -83,12 +93,17 @@ const Header = () => {
 
     return (
         <>
+            <LineBox>
+                <LineWrapper id="line-wrapper" onClick={() => onToggle()}>
+                    <Line className={(toggle.init ? 'init ' : '') + (toggle.line ? 'line-top' : 'top-reverse')}></Line>
+                    <Line className={(toggle.init ? 'init ' : '') + (toggle.line ? 'line-mid' : 'mid-reverse')}></Line>
+                    <Line className={(toggle.init ? 'init ' : '') + (toggle.line ? 'line-bot' : 'bot-reverse')}></Line>
+                </LineWrapper>
+            </LineBox>
             <HeaderBlock>
                 <Wrapper>
-                    <LineWrapper id="line-wrapper" onClick={() => onToggle()}>
-                        <Line className={(toggle.init ? 'init ' : '') + (toggle.line ? 'line-top' : 'top-reverse')}></Line>
-                        <Line className={(toggle.init ? 'init ' : '') + (toggle.line ? 'line-mid' : 'mid-reverse')}></Line>
-                        <Line className={(toggle.init ? 'init ' : '') + (toggle.line ? 'line-bot' : 'bot-reverse')}></Line>
+                    <LineWrapper style={{visibility: 'hidden'}}>
+                        <Line />
                     </LineWrapper>
                     <Link to="/" className="logo">HOME</Link>
                     {/*<Button cyan to={"/write"}>새 글 작성하기</Button>*/}
@@ -99,7 +114,11 @@ const Header = () => {
                 </Wrapper>
             </HeaderBlock>
             <Spacer/>
+
             <Navigation naviOpen={toggle.naviOpen} />
+            <div style={{background: 'rgba(0, 0, 0, 0.5)', display: (toggle.naviOpen? 'block' : 'none')}}
+                 onClick={() => onToggle()}
+            />
         </>
     );
 };
